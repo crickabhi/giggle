@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     url(r'^login$', 'giggle_app.views.login_view'), # login
     url(r'^logout$', 'giggle_app.views.logout_view'), # logout
     url(r'^signup$', 'giggle_app.views.signup'), # signup
-	url(r'^ribbits$', 'giggle_app.views.public'), # public ribbits
+    url(r'^giggles$', 'giggle_app.views.public'), # public ribbits
     url(r'^submit$', 'giggle_app.views.submit'), # submit new ribbit
 	url(r'^users/$', 'giggle_app.views.users'),
     url(r'^users/(?P<username>\w{0,30})/$', 'giggle_app.views.users'),
