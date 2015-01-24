@@ -94,6 +94,7 @@ def get_latest(user):
     except IndexError:
         return ""
  
+#if no username is given in the url, we fetch a list of all the users and use the annotate() function to add a ribbit_count attribute to all objects, which stores the number of giggles made by each user in the queryset. This allows us to use something along the lines of <user_object>.ribbit_count to fetch the giggle Count of the user.				   
  
 @login_required
 def users(request, username="", ribbit_form=None):
@@ -117,7 +118,7 @@ def users(request, username="", ribbit_form=None):
                   {'obj': obj, 'next_url': '/users/',
                    'ribbit_form': ribbit_form,
                    'username': request.user.username, })
-				   
+#Getting the latest giggle by each user is a bit tricky. We use Python's built in map() function for this and call get_latest() to all the elements of users queryset. The get_latest() function is defined in the code above and makes use of a backward relation on the User<-->Ribbit relation. For instance user.ribbit_set.all() would return all the giggles by the user. We order the giggles by id in descending order and slice the first element. The code is enclosed in a try catch block to catch the exception if no giggles are created by the user. We're then making use of Python's zip() function to link up each element of both iterators (users and giggles) so that we have a tuple with User Object and Latest giggle pair. We then pass along this zipped object along with the forms to the template. 
 @login_required
 def follow(request):
     if request.method == "POST":
