@@ -1,5 +1,4 @@
 # giggle
-giggle
 =============
 
 Giggle - A Twitter Clone made using Django
